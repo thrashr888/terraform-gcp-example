@@ -6,10 +6,7 @@ variable "project" {
   default = "tfce-test"
 }
 
-variable "GCP_CREDENTIALS" {}
-
 provider "google" {
-  credentials = var.GCP_CREDENTIALS
   project     = var.project
   region      = var.zone
 }
