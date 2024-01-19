@@ -42,7 +42,13 @@ resource "google_compute_instance" "micro" {
     source = google_compute_disk.default.self_link
   }
 
-  network_interface {}
+  network_interface {
+    network = "default"
+
+    access_config {
+      // Ephemeral public IP
+    }
+  }
 }
 
 resource "google_compute_instance" "small" {
@@ -54,7 +60,13 @@ resource "google_compute_instance" "small" {
     source = google_compute_disk.default.self_link
   }
 
-  network_interface {}
+  network_interface {
+    network = "default"
+
+    access_config {
+      // Ephemeral public IP
+    }
+  }
 }
 
 resource "google_compute_instance" "standard" {
@@ -77,7 +89,7 @@ resource "google_compute_instance" "standard" {
     network = "default"
 
     access_config {
-      // Ephemeral IP
+      // Ephemeral public IP
     }
   }
 
