@@ -20,11 +20,16 @@ provider "google" {
   region      = var.zone
 }
 
+data "google_compute_image" "my_image" {
+  family  = "debian-11"
+  project = "debian-cloud"
+}
+
 resource "google_compute_disk" "default" {
   name  = "test-disk"
   type  = "pd-ssd"
   zone  = var.zone
-  image = "debian-8-jessie-v20170523"
+  image = data.google_compute_image.my_image.self_link
   physical_block_size_bytes = 4096
 }
 
