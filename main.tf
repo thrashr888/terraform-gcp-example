@@ -35,7 +35,7 @@ resource "google_compute_disk" "default" {
 
 resource "google_compute_instance" "micro" {
   name         = "test"
-  machine_type = "e2-standard-2"
+  machine_type = "f1-micro"
   zone         = var.zone
 
   boot_disk {
@@ -45,9 +45,9 @@ resource "google_compute_instance" "micro" {
   network_interface {}
 }
 
-resource "google_compute_instance" "standard1" {
+resource "google_compute_instance" "small" {
   name         = "test"
-  machine_type = "e2-standard-2"
+  machine_type = "g1-small"
   zone         = var.zone
 
   boot_disk {
@@ -57,9 +57,9 @@ resource "google_compute_instance" "standard1" {
   network_interface {}
 }
 
-resource "google_compute_instance" "default" {
+resource "google_compute_instance" "standard" {
   name         = "test"
-  machine_type = "e2-standard-2"
+  machine_type = "n1-standard-1"
   zone         = var.zone
 
   tags = ["foo", "bar"]
