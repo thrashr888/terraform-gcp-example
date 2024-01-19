@@ -35,13 +35,11 @@ resource "google_compute_disk" "default" {
 
 resource "google_compute_instance" "micro" {
   name         = "test"
-  machine_type = "e2-micro"
+  machine_type = "e2-standard-2"
   zone         = var.zone
 
   boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-11"
-    }
+    source = data.google_compute_disk.default.self_link
   }
 
   network_interface {}
@@ -49,13 +47,11 @@ resource "google_compute_instance" "micro" {
 
 resource "google_compute_instance" "standard1" {
   name         = "test"
-  machine_type = "e2-micro"
+  machine_type = "e2-standard-2"
   zone         = var.zone
 
   boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-11"
-    }
+    source = data.google_compute_disk.default.self_link
   }
 
   network_interface {}
@@ -63,15 +59,13 @@ resource "google_compute_instance" "standard1" {
 
 resource "google_compute_instance" "default" {
   name         = "test"
-  machine_type = "e2-micro"
+  machine_type = "e2-standard-2"
   zone         = var.zone
 
   tags = ["foo", "bar"]
 
   boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-11"
-    }
+    source = data.google_compute_disk.default.self_link
   }
 
   // Local SSD disk
