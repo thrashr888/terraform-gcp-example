@@ -20,6 +20,11 @@ provider "google" {
   region      = var.zone
 }
 
+resource "google_service_account" "default" {
+  account_id   = "tfce-test"
+  display_name = "Custom SA for VM Instance"
+}
+
 data "google_compute_image" "my_image" {
   family  = "debian-11"
   project = "debian-cloud"
@@ -34,7 +39,7 @@ resource "google_compute_disk" "default" {
 }
 
 resource "google_compute_instance" "micro" {
-  name         = "test"
+  name         = "test-micro"
   machine_type = "f1-micro"
   zone         = var.zone
 
@@ -52,7 +57,7 @@ resource "google_compute_instance" "micro" {
 }
 
 resource "google_compute_instance" "small" {
-  name         = "test"
+  name         = "test-sm"
   machine_type = "g1-small"
   zone         = var.zone
 
@@ -70,7 +75,7 @@ resource "google_compute_instance" "small" {
 }
 
 resource "google_compute_instance" "standard" {
-  name         = "test"
+  name         = "test-standard"
   machine_type = "n1-standard-1"
   zone         = var.zone
 
