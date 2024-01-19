@@ -31,7 +31,7 @@ data "google_compute_image" "my_image" {
 }
 
 resource "google_compute_disk" "defaultA" {
-  name  = "test-disk"
+  name  = "test-diskA"
   type  = "pd-ssd"
   zone  = var.zone
   image = data.google_compute_image.my_image.self_link
@@ -39,7 +39,7 @@ resource "google_compute_disk" "defaultA" {
 }
 
 resource "google_compute_disk" "defaultB" {
-  name  = "test-disk"
+  name  = "test-diskB"
   type  = "pd-ssd"
   zone  = var.zone
   image = data.google_compute_image.my_image.self_link
@@ -47,7 +47,7 @@ resource "google_compute_disk" "defaultB" {
 }
 
 resource "google_compute_disk" "defaultC" {
-  name  = "test-disk"
+  name  = "test-diskC"
   type  = "pd-ssd"
   zone  = var.zone
   image = data.google_compute_image.my_image.self_link
