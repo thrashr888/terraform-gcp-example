@@ -20,11 +20,6 @@ provider "google" {
   region      = var.zone
 }
 
-resource "google_service_account" "default" {
-  account_id   = "tfce-test"
-  display_name = "Custom SA for VM Instance"
-}
-
 data "google_compute_image" "my_image" {
   family  = "debian-11"
   project = "debian-cloud"
@@ -119,8 +114,4 @@ resource "google_compute_instance" "standard" {
   }
 
   metadata_startup_script = "echo hi > /test.txt"
-
-  service_account {
-    scopes = ["userinfo-email", "compute-ro", "storage-ro"]
-  }
 }
