@@ -30,7 +30,23 @@ data "google_compute_image" "my_image" {
   project = "debian-cloud"
 }
 
-resource "google_compute_disk" "default" {
+resource "google_compute_disk" "defaultA" {
+  name  = "test-disk"
+  type  = "pd-ssd"
+  zone  = var.zone
+  image = data.google_compute_image.my_image.self_link
+  physical_block_size_bytes = 4096
+}
+
+resource "google_compute_disk" "defaultB" {
+  name  = "test-disk"
+  type  = "pd-ssd"
+  zone  = var.zone
+  image = data.google_compute_image.my_image.self_link
+  physical_block_size_bytes = 4096
+}
+
+resource "google_compute_disk" "defaultC" {
   name  = "test-disk"
   type  = "pd-ssd"
   zone  = var.zone
@@ -44,7 +60,7 @@ resource "google_compute_instance" "micro" {
   zone         = var.zone
 
   boot_disk {
-    source = google_compute_disk.default.self_link
+    source = google_compute_disk.defaultA.self_link
   }
 
   network_interface {
@@ -62,7 +78,7 @@ resource "google_compute_instance" "small" {
   zone         = var.zone
 
   boot_disk {
-    source = google_compute_disk.default.self_link
+    source = google_compute_disk.defaultB.self_link
   }
 
   network_interface {
@@ -82,7 +98,7 @@ resource "google_compute_instance" "standard" {
   tags = ["foo", "bar"]
 
   boot_disk {
-    source = google_compute_disk.default.self_link
+    source = google_compute_disk.defaultC.self_link
   }
 
   // Local SSD disk
