@@ -39,7 +39,7 @@ resource "google_compute_instance" "micro" {
   zone         = var.zone
 
   boot_disk {
-    source = data.google_compute_disk.default.self_link
+    source = google_compute_disk.default.self_link
   }
 
   network_interface {}
@@ -51,7 +51,7 @@ resource "google_compute_instance" "standard1" {
   zone         = var.zone
 
   boot_disk {
-    source = data.google_compute_disk.default.self_link
+    source = google_compute_disk.default.self_link
   }
 
   network_interface {}
@@ -65,7 +65,7 @@ resource "google_compute_instance" "default" {
   tags = ["foo", "bar"]
 
   boot_disk {
-    source = data.google_compute_disk.default.self_link
+    source = google_compute_disk.default.self_link
   }
 
   // Local SSD disk
